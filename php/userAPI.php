@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-06-21 19:32:54
- * @LastEditTime: 2020-06-30 14:32:14
+ * @LastEditTime: 2020-07-02 23:10:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \books_management\php\userAPI.php
@@ -85,12 +85,13 @@ switch ($op) {
         $repwd = md5($pwd);
         $sql = "INSERT INTO user(user_name,tel,email,password) VALUES ('{$user_data->user_name}', '{$user_data->tel}', '{$user_data->email}', '{$repwd}')";
         if($mySQLi->query($sql)){
-            $responseData['msg'] = '添加用户成功，用户名为：'. $user_data->user_name.'。默认密码为：'.$pwd.'请登陆后修改密码！';
+            $responseData['msg'] = '添加用户成功，用户名为：'. $user_data->user_name.'。默认密码为：'.$pwd.'。请登陆后修改密码！';
             echo json_encode($responseData);
         }else{
             $responseData['code'] = 1;
-            $responseData['msg'] = '添加用户失败';
+            $responseData['msg'] = '添加用户失败，请检查格式是否正确';
             echo json_encode($responseData);
+            //echo $mySQLi->error;
         }
         break;
     case 'updateStatus':

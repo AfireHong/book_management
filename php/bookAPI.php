@@ -80,10 +80,10 @@ switch ($op) {
             }
         } else {
             //不存在
-            $sql = 'INSERT INTO book(isbn, book_name, book_author, call_num,publisher, cate_id, price, quantity) VALUES (?,?,?,?,?,?,?)';
+            $sql = 'INSERT INTO book(isbn, book_name, book_author, call_num, publisher, cate_id, price, quantity) VALUES (?,?,?,?,?,?,?,?)';
             $stmt = $mySQLi->init();
             $stmt = $mySQLi->prepare($sql);
-            $stmt->bind_param('sssssidi', $book_data->isbn, $book_data->book_name, $book_data->book_author, $book_data->publisher, $book_data->call_num, $book_data->cate, $book_data->price, $book_data->quantity);
+            $stmt->bind_param('sssssidi', $book_data->isbn, $book_data->call_num, $book_data->book_name, $book_data->book_author, $book_data->publisher, $book_data->cate, $book_data->price, $book_data->quantity);
             if ($stmt->execute()) {
                 $responseData['msg'] = '添加成功';
                 echo json_encode($responseData);
